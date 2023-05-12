@@ -311,8 +311,8 @@ print(gdp_all)
 #generating dataframes from gdp_ all for the countries we are considering
 gdp_Portugal= gdp_all['Portugal']
 gdp_SA= gdp_all['South Africa']
-gdp_China= gdp_all['Canada']
-gdp_US= gdp_all['Cameroon']
+gdp_China= gdp_all['China']
+gdp_US= gdp_all['United States']
 
 
 #calling the functions, poly(t, *coefficients) and def poly_fit(data, degree, predicted_years, Countries)
@@ -337,22 +337,7 @@ print("prediction for 2031:", predictions[0])
 print("prediction for 2041:", predictions[1])
 
 
-##########   China fitting and Prediction  ##########
 
-predicted_years = np.array([2031, 2041])
-predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'China')
-
-print("prediction for 2031:", predictions[0])
-print("prediction for 2041:", predictions[1])
-
-
-##########   United States fitting and Prediction  ##########
-
-predicted_years = np.array([2031, 2041])
-predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'United States')
-
-print("prediction for 2031:", predictions[0])
-print("prediction for 2041:", predictions[1])
 
 
 
