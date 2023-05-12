@@ -99,6 +99,7 @@ def poly_fit(data, degree, predicted_years, Countries):
     plt.title(f'{Countries}')
     plt.legend()
     plt.grid(True)
+    plt.savefig(f'{Countries}.png')
     plt.show()
 
     return predictions, gdp_curve, (lower, upper)
@@ -311,7 +312,7 @@ print(gdp_all)
 #generating dataframes from gdp_ all for the countries we are considering
 gdp_Portugal= gdp_all['Portugal']
 gdp_SA= gdp_all['South Africa']
-gdp_China= gdp_all['China']
+gdp_China= gdp_all['Monaco']
 gdp_US= gdp_all['United States']
 
 
