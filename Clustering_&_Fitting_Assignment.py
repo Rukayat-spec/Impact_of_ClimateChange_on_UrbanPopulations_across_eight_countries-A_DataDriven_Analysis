@@ -216,7 +216,7 @@ plt.scatter(xcen, ycen, color="k", marker="d", s=80, label='Centroid')
 
 plt.xlabel("GDP(1981)")
 plt.ylabel("GDP(2021)")
-plt.title("Cluster Plot of GDP Per Capita for 1981 and 2021")
+plt.title("Two- Cluster Plot of GDP Per Capita for 1981 and 2021")
 plt.legend()
 plt.show()
 
@@ -245,7 +245,7 @@ plt.scatter(xcen, ycen, color="k", marker="d", s=80, label='Centroid')
 
 plt.xlabel("GDP(1981)")
 plt.ylabel("GDP(2021)")
-plt.title("A-3-cluster-plot")
+plt.title("Three- Cluster Plot of GDP Per Capita for 1981 and 2021")
 plt.show()
 
 # The plot was more meaningful when the number of clusters was set to 3.
@@ -281,6 +281,78 @@ plt.title("GDP per capita (current US$)")
 plt.legend()
 plt.savefig("GDP_PER_CAPITAL.PNG")
 plt.show()
+
+
+# Now, we will proceed to the fitting part of the assignment.
+# the gdp_per_capital data will be used for fitting and prediction
+#two countries each  were selected from the 2 of the data clusters
+#Portugal  and South Africa was selected from cluster 0
+#China and United States was selected from cluster 2
+
+#calling the transposed gdp_data for fitting analysis
+print(gdp_T)
+
+#cleaning the transposed data
+gdp_T.columns=gdp_T.iloc[0]
+gdp_T=gdp_T.iloc[1:]
+
+gdp_T = gdp_T.drop(['Country Code', 'Indicator Code', 'Indicator Name',
+                    'Unnamed: 66'], axis=0)
+
+gdp_T.reset_index(inplace=True)
+gdp_T.rename(columns={'index':'Year'}, inplace=True)
+gdp_T.rename(columns={'Country Name': 'Year'}, inplace=True)
+gdp_T=gdp_T.apply(pd.to_numeric)
+#print(gdp_T.dtypes)
+
+gdp_all= gdp_T[gdp_T['Year'].isin([1981,1991,2001,2011,2021])]
+print(gdp_all)
+
+#generating dataframes from gdp_ all for the countries we are considering
+gdp_Portugal= gdp_all['Portugal']
+gdp_SA= gdp_all['South Africa']
+gdp_China= gdp_all['Canada']
+gdp_US= gdp_all['Cameroon']
+
+
+#calling the functions, poly(t, *coefficients) and def poly_fit(data, degree, predicted_years, Countries)
+#to fit and make  plots with predictions
+
+
+##########   Portugal fitting and Prediction  ##########
+
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'Portugal')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
+
+
+##########   South Africa fitting and Prediction  ##########
+
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'South Africa')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
+
+
+##########   China fitting and Prediction  ##########
+
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'China')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
+
+
+##########   United States fitting and Prediction  ##########
+
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'United States')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
 
 
 
