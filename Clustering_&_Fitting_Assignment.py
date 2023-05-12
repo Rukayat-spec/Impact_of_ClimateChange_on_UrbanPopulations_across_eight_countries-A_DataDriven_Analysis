@@ -95,8 +95,8 @@ def poly_fit(data, degree, predicted_years, Countries):
     plt.plot(extended_curve_years, gdp_curve, 'r-', label='Fitted Curve')
     plt.fill_between(extended_curve_years, lower, upper, color='yellow', alpha=0.4, label='Error Range')
     plt.xlabel('Year')
-    plt.ylabel('GDP_per_capita')
-    plt.title(f'Polynomial Fit for GDP_per_capita in {Countries}')
+    plt.ylabel('GDP_per_capita (current US$)')
+    plt.title(f'{Countries}')
     plt.legend()
     plt.grid(True)
     plt.show()
@@ -331,13 +331,28 @@ print("prediction for 2041:", predictions[1])
 ##########   South Africa fitting and Prediction  ##########
 
 predicted_years = np.array([2031, 2041])
-predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'South Africa')
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'Burundi')
 
 print("prediction for 2031:", predictions[0])
 print("prediction for 2041:", predictions[1])
 
 
+##########   China fitting and Prediction  ##########
 
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'Monaco')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
+
+
+##########   United States fitting and Prediction  ##########
+
+predicted_years = np.array([2031, 2041])
+predictions, gdp_curve, error_range = poly_fit(gdp_all, 3, predicted_years, 'United States')
+
+print("prediction for 2031:", predictions[0])
+print("prediction for 2041:", predictions[1])
 
 
 
